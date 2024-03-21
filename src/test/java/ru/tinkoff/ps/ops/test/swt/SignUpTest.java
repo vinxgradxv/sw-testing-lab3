@@ -26,8 +26,8 @@ public class SignUpTest {
                         driver.get(Utils.BASE_URL);
                         var signUpPage = mainPage.goToSignUpPage();
                         signUpPage.createAccount();
-                        //Assertions.assertNotNull(Utils.getElementBySelector(driver, By.xpath("//span[contains(text(),'" + Utils.CORRECT_LOGIN + "')]")));
-                        //Assertions.assertEquals("https://worldoftanks.eu/ru/", loginPage.getDriver().getCurrentUrl());
+                        Assertions.assertNotNull(Utils.getElementBySelector(driver, By.xpath("//h1[contains(text(),'АККАУНТ СОЗДАН')]")));
+                        Assertions.assertTrue(signUpPage.getDriver().getCurrentUrl().contains("https://eu.wargaming.net"));
                     } finally {
                         driver.quit();
                     }

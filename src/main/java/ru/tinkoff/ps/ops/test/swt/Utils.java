@@ -1,10 +1,7 @@
 package ru.tinkoff.ps.ops.test.swt;
 
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -19,7 +16,7 @@ import java.util.List;
 public class Utils {
 
     public static final String CHROME_SYSTEM_PROPERTY_NAME = "webdriver.chrome.driver";
-    public static final String CHROME_SYSTEM_PROPERTY_PATH = "drivers/chromedriver";
+    public static final String CHROME_SYSTEM_PROPERTY_PATH = "drivers/chromedriver.exe";
     public static final String FIREFOX_SYSTEM_PROPERTY_NAME = "webdriver.gecko.driver";
     public static final String FIREFOX_SYSTEM_PROPERTY_PATH = "drivers/geckodriver";
     public static final String BASE_URL = "https://worldoftanks.ru/";
@@ -59,6 +56,7 @@ public class Utils {
         }
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
+        options.setPageLoadStrategy(PageLoadStrategy.NONE);
         return new ChromeDriver(options);
     }
 
@@ -94,6 +92,11 @@ public class Utils {
     }
 
     public static WebElement getElementBySelector(WebDriver driver, By selector) {
+        WebDriverWait driverWait = new WebDriverWait(driver, 30);
+        return driverWait.until(ExpectedConditions.visibilityOfElementLocated(selector));
+    }
+
+    public static WebElement getElementBySelectorNoVisible(WebDriver driver, By selector) {
         WebDriverWait driverWait = new WebDriverWait(driver, 30);
         return driverWait.until(ExpectedConditions.visibilityOfElementLocated(selector));
     }
