@@ -84,5 +84,13 @@ public class MainPage extends Page {
         return new SignUpPage(this.driver);
     }
 
+    public ClanPage goToClanPage() {
+        var clansButton = Utils.getElementBySelector(driver, By.xpath("//a[@href=\"/ru/clanwars/?link_place=wotp_link_main-menu\"]"));
+        clansButton.click();
+
+        return new ClanPage(this.driver);
+
+    }
+
 }
 
