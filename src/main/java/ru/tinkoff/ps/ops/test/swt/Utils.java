@@ -11,7 +11,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Utils {
 
@@ -57,6 +59,12 @@ public class Utils {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.setPageLoadStrategy(PageLoadStrategy.NONE);
+        Map<String, Object> prefs = new HashMap<>();
+        prefs.put("download.default_directory", "C:\\Users\\vinxg\\IdeaProjects\\sw-testing-lab3\\files");
+        prefs.put("download.prompt_for_download", false);
+        prefs.put("download.directory_upgrade", true);
+        prefs.put("safebrowsing.enabled", true);
+        options.setExperimentalOption("prefs", prefs);
         return new ChromeDriver(options);
     }
 

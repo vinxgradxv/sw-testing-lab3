@@ -60,6 +60,22 @@ public class MainPage extends Page {
         return new LoginPage(this.driver);
     }
 
+    public GamePage goToGamePage() {
+        //var rejectCookieButton = Utils.getElementBySelector(driver, By.xpath("//button[@id='onetrust-reject-all-handler']"));
+        //rejectCookieButton.click();
+        WebElement closeAddButton = Utils.getElementBySelector(driver, By.xpath("//button[@data-tooltip-text=\"Свернуть\"]"));
+        closeAddButton.click();
+
+        var gameButton = Utils.getElementBySelector(driver, By.xpath("//body/div[1]/div[1]/div[2]/div[1]/ul[1]/li[2]/a[1]/span[1]"));
+        gameButton.click();
+
+        var downloadButton = Utils.getElementBySelector(driver, By.xpath("//a[contains(text(),'Скачать игру')]"));
+        downloadButton.click();
+
+        return new GamePage(this.driver);
+    }
+
+
     public SignUpPage goToSignUpPage() {
         WebElement spanSignUp = Utils.getElementBySelector(driver, By.xpath("//span[@class=\"big-button_text big-button_text__huge\"][contains(text(), \"Зарегистрироваться\")]"));
         WebElement buttonSignUp = spanSignUp.findElement(By.xpath(".."));
