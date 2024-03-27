@@ -1,10 +1,15 @@
 package ru.tinkoff.ps.ops.test.swt.model;
 
+import lombok.SneakyThrows;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.tinkoff.ps.ops.test.swt.Utils;
+
+import java.time.Duration;
 
 public class MainPage extends Page {
 
@@ -51,8 +56,7 @@ public class MainPage extends Page {
     public LoginPage goToLoginPage() {
         //var rejectCookieButton = Utils.getElementBySelector(driver, By.xpath("//button[@id='onetrust-reject-all-handler']"));
         //rejectCookieButton.click();
-        WebElement closeAddButton = Utils.getElementBySelector(driver, By.xpath("//button[@data-tooltip-text=\"Свернуть\"]"));
-        closeAddButton.click();
+        rejectPromoWindow();
 
         var loginButton = Utils.getElementBySelector(driver, By.xpath("//a[contains(text(),'Войти')]"));
         loginButton.click();
@@ -63,8 +67,7 @@ public class MainPage extends Page {
     public GamePage goToGamePage() {
         //var rejectCookieButton = Utils.getElementBySelector(driver, By.xpath("//button[@id='onetrust-reject-all-handler']"));
         //rejectCookieButton.click();
-        WebElement closeAddButton = Utils.getElementBySelector(driver, By.xpath("//button[@data-tooltip-text=\"Свернуть\"]"));
-        closeAddButton.click();
+        rejectPromoWindow();
 
         var gameButton = Utils.getElementBySelector(driver, By.xpath("//body/div[1]/div[1]/div[2]/div[1]/ul[1]/li[2]/a[1]/span[1]"));
         gameButton.click();
@@ -92,5 +95,12 @@ public class MainPage extends Page {
 
     }
 
+    @SneakyThrows
+    public void rejectPromoWindow() {
+        WebElement closeAddButton = Utils.getClickableElementBySelector(driver, By.xpath("//button[@data-tooltip-text=\"Свернуть\"]"));
+        Thread.sleep(1000);
+        closeAddButton.click();
+        Thread.sleep(1000);
+    }
 }
 

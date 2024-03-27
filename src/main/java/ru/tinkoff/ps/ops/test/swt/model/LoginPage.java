@@ -15,6 +15,7 @@ public class LoginPage extends Page{
     public void login(String login, String password) {
         //var rejectCookieButton = Utils.getElementBySelector(driver, By.xpath("//button[@id='onetrust-reject-all-handler']"), 60);
         //rejectCookieButton.click();
+        Utils.waitUntilPageLoads(driver, 10);
         var inputLogin = Utils.getElementBySelector(driver, By.xpath("//input[@id='id_login']"));
         inputLogin.clear();
         inputLogin.sendKeys(login);

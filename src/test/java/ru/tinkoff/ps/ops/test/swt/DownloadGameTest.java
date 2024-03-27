@@ -16,7 +16,7 @@ public class DownloadGameTest {
     }
 
     @TestFactory
-    public Stream<DynamicTest> testLoginWithMail() {
+    public Stream<DynamicTest> testGameDownload() {
         return Utils.getDrivers().stream().map(driver -> DynamicTest.dynamicTest("Успешный вход в аккаунт в браузере " + driver.getClass(),
                 () -> {
                     try {

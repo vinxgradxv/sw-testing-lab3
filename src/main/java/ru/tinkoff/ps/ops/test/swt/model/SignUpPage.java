@@ -38,9 +38,8 @@ public class SignUpPage extends Page{
         inputRePassword.clear();
         inputRePassword.sendKeys(randomString + "1A");
 
-        var cookie = Utils.getElementBySelector(driver, By.xpath("//button[@aria-label=\"Закрыть\"]"));
-        cookie.click();
-
+//        var cookie = Utils.getElementBySelector(driver, By.xpath("//button[@aria-label=\"Закрыть\"]"));
+//        cookie.click();
 
         var inputDay = Utils.getElementBySelector(driver, By.xpath("//span[contains(text(),'День')]"));
         inputDay.click();

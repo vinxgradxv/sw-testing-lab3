@@ -10,10 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Utils {
 
@@ -99,6 +96,11 @@ public class Utils {
         System.setProperty(FIREFOX_SYSTEM_PROPERTY_NAME, FIREFOX_SYSTEM_PROPERTY_PATH);
     }
 
+    public static WebElement getClickableElementBySelector(WebDriver driver, By selector) {
+        WebDriverWait driverWait = new WebDriverWait(driver, 30);
+        return driverWait.until(ExpectedConditions.elementToBeClickable(selector));
+    }
+
     public static WebElement getElementBySelector(WebDriver driver, By selector) {
         WebDriverWait driverWait = new WebDriverWait(driver, 30);
         return driverWait.until(ExpectedConditions.visibilityOfElementLocated(selector));
@@ -114,9 +116,25 @@ public class Utils {
         return driverWait.until(ExpectedConditions.visibilityOfElementLocated(selector));
     }
 
+    public static void waitForElement(WebDriver driver, By selector){
+        WebDriverWait driverWait = new WebDriverWait(driver, 30);
+        driverWait.until(ExpectedConditions.visibilityOfElementLocated(selector));
+    }
 
     public static void waitUntilPageLoads(WebDriver driver, long timeout) {
         WebDriverWait waitDriver = new WebDriverWait(driver, timeout);
         waitDriver.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+    }
+
+    public static void changeTab(WebDriver driver) {
+        String originalTab = driver.getWindowHandle();
+
+        Set<String> allTabs = driver.getWindowHandles();
+        for(String tab : allTabs) {
+            if (!tab.equals(originalTab)) {
+                driver.switchTo().window(tab);
+                break;
+            }
+        }
     }
 }
