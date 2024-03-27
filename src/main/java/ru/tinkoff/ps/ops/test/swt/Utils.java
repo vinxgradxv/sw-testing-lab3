@@ -16,7 +16,7 @@ import java.util.*;
 public class Utils {
 
     public static final String CHROME_SYSTEM_PROPERTY_NAME = "webdriver.chrome.driver";
-    public static final String CHROME_SYSTEM_PROPERTY_PATH = "drivers/chromedriver.exe";
+    public static final String CHROME_SYSTEM_PROPERTY_PATH = "drivers/chromedriver";
     public static final String FIREFOX_SYSTEM_PROPERTY_NAME = "webdriver.gecko.driver";
     public static final String FIREFOX_SYSTEM_PROPERTY_PATH = "drivers/geckodriver";
     public static final String BASE_URL = "https://worldoftanks.ru/";
