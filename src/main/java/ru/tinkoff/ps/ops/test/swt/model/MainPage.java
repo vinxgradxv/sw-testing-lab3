@@ -95,6 +95,13 @@ public class MainPage extends Page {
 
     }
 
+    public TournamentPage goToTournamentPage() {
+        var tournamentsButton = Utils.getElementBySelector(driver, By.xpath("//a[@href=\"/ru/tournaments/\"]"));
+        tournamentsButton.click();
+
+        return new TournamentPage(this.driver);
+    }
+
     @SneakyThrows
     public void rejectPromoWindow() {
         WebElement closeAddButton = Utils.getClickableElementBySelector(driver, By.xpath("//button[@data-tooltip-text=\"Свернуть\"]"));

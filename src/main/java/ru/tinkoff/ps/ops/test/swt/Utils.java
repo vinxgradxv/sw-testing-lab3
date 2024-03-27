@@ -2,6 +2,7 @@ package ru.tinkoff.ps.ops.test.swt;
 
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -135,6 +136,15 @@ public class Utils {
                 driver.switchTo().window(tab);
                 break;
             }
+        }
+    }
+
+    public static boolean isElementPresent(WebDriver driver, By selector) {
+        try {
+            driver.findElement(selector);
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
         }
     }
 }
